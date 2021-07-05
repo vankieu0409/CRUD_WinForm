@@ -20,6 +20,12 @@ namespace CRUD.Views
             }
             base.Dispose(disposing);
         }
+
+        #region MyRegion
+
+        
+
+       
         private void InitializeComponent()
         {
             this.gb_TaoTK = new System.Windows.Forms.GroupBox();
