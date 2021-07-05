@@ -20,6 +20,12 @@ namespace CRUD.Views
             }
             base.Dispose(disposing);
         }
+
+        #region MyRegion
+
+        
+
+      
         private void InitializeComponent()
         {
             this.gr_hethong = new System.Windows.Forms.GroupBox();
@@ -251,8 +257,7 @@ namespace CRUD.Views
             this.combx_namsinh.Name = "combx_namsinh";
             this.combx_namsinh.Size = new System.Drawing.Size(151, 24);
             this.combx_namsinh.TabIndex = 7;
-            this.combx_namsinh.SelectedIndexChanged += new System.EventHandler(this.combx_namsinh_SelectedIndexChanged);
-            // 
+            
             // rbt_Nu
             // 
             this.rbt_Nu.AutoSize = true;
@@ -440,5 +445,4 @@ namespace CRUD.Views
         private System.Windows.Forms.ToolStripMenuItem bayMàuToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
     }
-}
 }
