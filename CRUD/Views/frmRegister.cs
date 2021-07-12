@@ -7,19 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CRUD.IServices;
 using CRUD.models;
 using CRUD.Services;
 
 namespace CRUD.Views
 {
-    
+
     public partial class frmRegister : Form
     {
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
         private string _fileNamePath;
         private List<Accounts> _lstAccounts;
+
         public frmRegister()
         {
             InitializeComponent();
@@ -33,9 +35,9 @@ namespace CRUD.Views
 
         void loadNamSinh()
         {
-            foreach (var x in _servicesAccount.getYearofBirth())
+            foreach (var VARIABLE in _servicesAccount.getYearofBirth())
             {
-                cbx_Namsinh.Items.Add(x);
+                cbx_Namsinh.Items.Add(VARIABLE);
             }
         }
         private void btn_tusinhmk_Click(object sender, EventArgs e)
@@ -54,41 +56,36 @@ namespace CRUD.Views
             tbx_mk.PasswordChar = '*';
         }
 
-        private void cbx_Namsinh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        void loadNamSinh()
-        {
-            string[] arrNawmSinh = new string[2021 - 1900];
-            int temp = 1900;
-            for (int i = 0; i < arrNawmSinh.Length; i++)
-            {
-                //    arrNawmSinh[i] = Convert.ToString(temp);
-                cbx_Namsinh.Items.Add(temp);
-                temp++;
-            }
-        }
-
         public void SenderfilenamePathFormLogin(string Path)
         {
-            _fileNamePath = Path;// gán đường dẫn từ form login
+            _fileNamePath = Path;// gán đường dẫn từ form login sang bên đăng ký
         }
 
         void loadData()
         {
+            if (_serviceFile.OpenFile<Accounts>(_fileNamePath) != null)
+            {
+                _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
+                return;
+            }
             _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
         }
 
         private void btn_Taotk_Click(object sender, EventArgs e)
         {
-           loadData();//đọc data từ file trước;
-           Accounts accounts = new Accounts();
-           accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count;
-           accounts.Acc = textBox1;
+            loadData();//đọc data từ file trước;
+            Accounts accounts = new Accounts();
+            accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count;// Id tự sinh
+            accounts.Acc = tbx_tk.Text;
             accounts.Sex = rbtn_nam.Checked ? 1 : 0;
-            accounts.YearofBirth= ( )
+            accounts.YearofBirth = Convert.ToInt16((cbx_Namsinh.SelectedItem));
+            _lstAccounts.Add(accounts);
+            string temp = _serviceFile.SaveFile(_fileNamePath, _lstAccounts);
+            MessageBox.Show(temp, " thông báo");
+            this.Hide();
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.Show();
+
         }
     }
 }

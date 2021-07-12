@@ -54,7 +54,8 @@ namespace CRUD.Views
         //        return;
         //    }
 
-        if (_lstAccounts.Where(c=>c.Acc==tbx_tk.Text&& c.Pass==tbx_mk.Text)!= null)
+        lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
+        if (_servicesAccount.getlst().Where(c=>c.Acc==tbx_tk.Text&& c.Pass==tbx_mk.Text)!= null)
         {
             MessageBox.Show("Đang Nhâp thành công", "Thông Bấu");
             this.Hide();
@@ -82,6 +83,8 @@ namespace CRUD.Views
                 lbl_fileNamePath.Text = _fileNamePath;
                 _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
                 _servicesAccount.fillDataFormtoService(_lstAccounts);
+                lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
+
             }
         }
 

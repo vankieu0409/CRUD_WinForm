@@ -1,5 +1,8 @@
-﻿namespace CRUD.models
+﻿using System;
+
+namespace CRUD.models
 {
+    [Serializable]
     public class Accounts
     {
         public int Id { get; set; }
