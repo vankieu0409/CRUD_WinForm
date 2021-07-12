@@ -35,22 +35,22 @@ namespace CRUD.Services
 
         public List<T> OpenFile<T>(string path)
         {
-            //try
-            //{
+            try
+            {
                 List<T> lstAccount = new List<T>();
-            _fs = new FileStream(path, FileMode.OpenOrCreate);
-            _bf = new BinaryFormatter();
-            var data = _bf.Deserialize(_fs);
-            lstAccount = (List<T>)data;
-            _fs.Close();
-            return lstAccount;
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //    _fs.Close();
-            //    return null;
-            //}
+                _fs = new FileStream(path, FileMode.Open);
+                _bf = new BinaryFormatter();
+                var data = _bf.Deserialize(_fs);
+                lstAccount = (List<T>)data;
+                _fs.Close();
+                return lstAccount;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                _fs.Close();
+                return null;
+            }
         }
     }
 

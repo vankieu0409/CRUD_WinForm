@@ -78,7 +78,7 @@ namespace CRUD.Views
                 return;
             }
 
-            _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
+            _lstAccounts = new List<Accounts>();
         }
 
         private void btn_Taotk_Click(object sender, EventArgs e)
