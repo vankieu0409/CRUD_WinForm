@@ -59,7 +59,7 @@ namespace CRUD.Views
             this.lbl_Quenmk.TabIndex = 3;
             this.lbl_Quenmk.TabStop = true;
             this.lbl_Quenmk.Text = "Quên mật khẩu?";
-            this.lbl_Quenmk.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbl_Quenmk_MouseClick);
+
             // 
             // tbx_tk
             // 
@@ -109,7 +109,6 @@ namespace CRUD.Views
             this.lbl_dk.TabStop = true;
             this.lbl_dk.Text = "Đăng ký?";
             this.lbl_dk.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_dk_LinkClicked);
-            this.lbl_dk.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbl_dk_MouseClick);
             // 
             // btn_Data
             // 

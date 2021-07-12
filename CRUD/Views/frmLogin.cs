@@ -19,49 +19,43 @@ namespace CRUD.Views
         private IServiceFile _serviceFile;
         private string _fileNamePath;
         private List<Accounts> _lstAccounts;
-        
+
         public frmLogin()
         {
             _serviceFile = new SerViceFiles();
             _servicesAccount = new ServicesAcounts();
             InitializeComponent();
         }
-        private void lbl_Quenmk_MouseClick(object sender, MouseEventArgs e)
-        {
-
-            frmMain a = new frmMain();
-            a.Show();
-        }
-
-        private void lbl_dk_MouseClick(object sender, MouseEventArgs e)
-        {
-            frmRegister register = new frmRegister();
-            register.Show();
-        }
+        
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-        //    if (tbx_tk.Text == "kieu" && tbx_mk.Text == "1")
-        //    {
-        //        frmMain a = new frmMain();
-        //        this.Hide();
-        //        a.ShowDialog();
-        //        this.Show();
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Bạn Nhập Sai Tài khỏn hoặc Mật khẩu!\n Mời Nhập lại", "THÔNG BÁO");
-        //        return;
-        //    }
+            //    if (tbx_tk.Text == "kieu" && tbx_mk.Text == "1")
+            //    {
+            //        frmMain a = new frmMain();
+            //        this.Hide();
+            //        a.ShowDialog();
+            //        this.Show();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Bạn Nhập Sai Tài khỏn hoặc Mật khẩu!\n Mời Nhập lại", "THÔNG BÁO");
+            //        return;
+            //    }
 
-        lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
-        if (_servicesAccount.getlst().Where(c=>c.Acc==tbx_tk.Text&& c.Pass==tbx_mk.Text)!= null)
-        {
-            MessageBox.Show("Đang Nhâp thành công", "Thông Bấu");
-            this.Hide();
-            frmMain frmMain = new frmMain();
-            frmMain.Show();
-        }
+            lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
+            if (string.IsNullOrWhiteSpace(tbx_tk.Text)|| string.IsNullOrWhiteSpace(tbx_mk.Text) )
+            {
+                MessageBox.Show(" Không đƯợc để trống Tài Khoản Và Mật Khẩu", " Erorr 400");
+                return;
+            }
+            if (_servicesAccount.getlst().Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text) != null)
+            {
+                MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
+                this.Hide();
+                frmMain frmMain = new frmMain();
+                frmMain.Show();
+            }
         }
 
 
@@ -77,21 +71,21 @@ namespace CRUD.Views
         private void btn_Data_Click(object sender, EventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            if (dlg.ShowDialog()==DialogResult.OK)
+            if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _fileNamePath = dlg.FileName; // gán Lại đương dẫn của File cho biến
                 lbl_fileNamePath.Text = _fileNamePath;
-                _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
-                _servicesAccount.fillDataFormtoService(_lstAccounts);
-                lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
-
+                _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);// đọc file lên và lấy giá trị gán lại cho List
+                _servicesAccount.fillDataFormtoService(_lstAccounts);// Đổ giá trị vào cho List ở bên AccountService
+                lbl_checkdata.Text = (_servicesAccount.getlst()==null?0:_servicesAccount.getlst().Count).ToString();
             }
         }
 
         private void lbl_dk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmRegister frmRegister = new frmRegister();
-            frmRegister.SenderfilenamePathFormLogin(_fileNamePath);// gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
+            frmRegister.SenderfilenamePathFormLogin(
+                _fileNamePath); // gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
             this.Hide();
             frmRegister.Show();
         }

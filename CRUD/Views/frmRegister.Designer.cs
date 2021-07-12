@@ -74,6 +74,8 @@ namespace CRUD.Views
             this.btn_ShowPass.TabIndex = 23;
             this.btn_ShowPass.Text = "Show Pass";
             this.btn_ShowPass.UseVisualStyleBackColor = true;
+            this.btn_ShowPass.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btn_ShowPass_MouseDown);
+            this.btn_ShowPass.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btn_ShowPass_MouseUp);
             // 
             // cbx_Namsinh
             // 
@@ -129,6 +131,7 @@ namespace CRUD.Views
             this.btn_tusinhmk.TabIndex = 17;
             this.btn_tusinhmk.Text = "Tự sinh mật khẩu";
             this.btn_tusinhmk.UseVisualStyleBackColor = true;
+            this.btn_tusinhmk.Click += new System.EventHandler(this.btn_tusinhmk_Click);
             // 
             // btn_Taotk
             // 
@@ -138,6 +141,7 @@ namespace CRUD.Views
             this.btn_Taotk.TabIndex = 16;
             this.btn_Taotk.Text = "Tạo Tài Khoản";
             this.btn_Taotk.UseVisualStyleBackColor = true;
+            this.btn_Taotk.Click += new System.EventHandler(this.btn_Taotk_Click);
             // 
             // lbl_Namsinh
             // 
@@ -195,7 +199,6 @@ namespace CRUD.Views
 #endregion
 
         private System.Windows.Forms.GroupBox gb_TaoTK;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btn_ShowPass;
         private System.Windows.Forms.ComboBox cbx_Namsinh;
         private System.Windows.Forms.TextBox tbx_mk;
