@@ -7,13 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CRUD.IServices;
+using CRUD.models;
+using CRUD.Services;
 
 namespace CRUD.Views
 {
     public partial class frmLogin : Form
     {
+        private IServicesAccount _servicesAccount;
+        private IServiceFile _serviceFile;
+        private string _fileNamePath;
+        private List<Accounts> _lstAccounts;
+        
         public frmLogin()
         {
+            _serviceFile = new SerViceFiles();
+            _servicesAccount = new ServicesAcounts();
             InitializeComponent();
         }
         private void lbl_Quenmk_MouseClick(object sender, MouseEventArgs e)
@@ -31,19 +41,26 @@ namespace CRUD.Views
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            if (tbx_tk.Text == "kieu" && tbx_mk.Text == "1")
-            {
-                frmMain a = new frmMain();
-                this.Hide();
-                a.ShowDialog();
-                this.Show();
-            }
-            else
-            {
-                MessageBox.Show("Bạn Nhập Sai Tài khỏn hoặc Mật khẩu!\n Mời Nhập lại", "THÔNG BÁO");
-                return;
-            }
+        //    if (tbx_tk.Text == "kieu" && tbx_mk.Text == "1")
+        //    {
+        //        frmMain a = new frmMain();
+        //        this.Hide();
+        //        a.ShowDialog();
+        //        this.Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Bạn Nhập Sai Tài khỏn hoặc Mật khẩu!\n Mời Nhập lại", "THÔNG BÁO");
+        //        return;
+        //    }
 
+        if (_lstAccounts.Where(c=>c.Acc==tbx_tk.Text&& c.Pass==tbx_mk.Text)!= null)
+        {
+            MessageBox.Show("Đang Nhâp thành công", "Thông Bấu");
+            this.Hide();
+            frmMain frmMain = new frmMain();
+            frmMain.Show();
+        }
         }
 
 
@@ -54,6 +71,26 @@ namespace CRUD.Views
             {
                 e.Cancel = true;
             }
+        }
+
+        private void btn_Data_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            if (dlg.ShowDialog()==DialogResult.OK)
+            {
+                _fileNamePath = dlg.FileName; // gán Lại đương dẫn của File cho biến
+                lbl_fileNamePath.Text = _fileNamePath;
+                _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
+                _servicesAccount.fillDataFormtoService(_lstAccounts);
+            }
+        }
+
+        private void lbl_dk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmRegister frmRegister = new frmRegister();
+            frmRegister.SenderfilenamePathFormLogin(_fileNamePath);// gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
+            this.Hide();
+            frmRegister.Show();
         }
     }
 }

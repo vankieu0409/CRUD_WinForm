@@ -35,6 +35,9 @@ namespace CRUD.Views
             this.mk = new System.Windows.Forms.Label();
             this.tbx_mk = new System.Windows.Forms.TextBox();
             this.lbl_dk = new System.Windows.Forms.LinkLabel();
+            this.btn_Data = new System.Windows.Forms.Button();
+            this.lbl_fileNamePath = new System.Windows.Forms.Label();
+            this.lbl_checkdata = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tk
@@ -105,13 +108,45 @@ namespace CRUD.Views
             this.lbl_dk.TabIndex = 4;
             this.lbl_dk.TabStop = true;
             this.lbl_dk.Text = "Đăng ký?";
+            this.lbl_dk.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_dk_LinkClicked);
             this.lbl_dk.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbl_dk_MouseClick);
+            // 
+            // btn_Data
+            // 
+            this.btn_Data.Location = new System.Drawing.Point(28, 120);
+            this.btn_Data.Name = "btn_Data";
+            this.btn_Data.Size = new System.Drawing.Size(93, 32);
+            this.btn_Data.TabIndex = 6;
+            this.btn_Data.Text = "Mở data";
+            this.btn_Data.UseVisualStyleBackColor = true;
+            this.btn_Data.Click += new System.EventHandler(this.btn_Data_Click);
+            // 
+            // lbl_fileNamePath
+            // 
+            this.lbl_fileNamePath.AutoSize = true;
+            this.lbl_fileNamePath.Location = new System.Drawing.Point(33, 193);
+            this.lbl_fileNamePath.Name = "lbl_fileNamePath";
+            this.lbl_fileNamePath.Size = new System.Drawing.Size(39, 17);
+            this.lbl_fileNamePath.TabIndex = 7;
+            this.lbl_fileNamePath.Text = "chán\r\n";
+            // 
+            // lbl_checkdata
+            // 
+            this.lbl_checkdata.AutoSize = true;
+            this.lbl_checkdata.Location = new System.Drawing.Point(33, 168);
+            this.lbl_checkdata.Name = "lbl_checkdata";
+            this.lbl_checkdata.Size = new System.Drawing.Size(39, 17);
+            this.lbl_checkdata.TabIndex = 8;
+            this.lbl_checkdata.Text = "chán\r\n";
             // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(326, 219);
+            this.Controls.Add(this.lbl_checkdata);
+            this.Controls.Add(this.lbl_fileNamePath);
+            this.Controls.Add(this.btn_Data);
             this.Controls.Add(this.lbl_dk);
             this.Controls.Add(this.tbx_mk);
             this.Controls.Add(this.mk);
@@ -128,6 +163,10 @@ namespace CRUD.Views
 
         }
 
+        private System.Windows.Forms.Button btn_Data;
+
+        private System.Windows.Forms.Label lbl_fileNamePath;
+
         #endregion
 
         private System.Windows.Forms.Label tk;
@@ -137,5 +176,6 @@ namespace CRUD.Views
         private System.Windows.Forms.Label mk;
         private System.Windows.Forms.TextBox tbx_mk;
         private System.Windows.Forms.LinkLabel lbl_dk;
+        private System.Windows.Forms.Label lbl_checkdata;
     }
 }

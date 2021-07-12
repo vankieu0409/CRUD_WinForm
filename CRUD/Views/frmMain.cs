@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CRUD.IServices;
+using CRUD.Services;
 
 namespace CRUD.Views
 {
     public partial class frmMain : Form
     {
+        private IServicesAccount _servicesAccount = new ServicesAcounts();
+        private IServiceFile _serviceFile = new SerViceFiles();
 
         //private IServiceAccount pt = new ServiceAccount();
         private int gioitinh;
@@ -21,6 +26,7 @@ namespace CRUD.Views
         {
             InitializeComponent();
             loadNawmSinh();
+            
         }
 
         void loadNawmSinh()
@@ -44,10 +50,10 @@ namespace CRUD.Views
             gv_data.Columns[2].Name = " Giới tính";
             gv_data.Columns[3].Name = " Năm Sinh";
             gv_data.Columns[4].Name = " Trạng thái";
-            //foreach (var x in pt.aa())
-            //{
-            //    gv_data.Rows.Add(x.Acc, x.Pass, x.Sex == 1 ? "Nam" : x.Sex == 0 ? "Nữ" : "", x.YearofBirth, x.Status == true ? "Hoạt Động" : "Không Hoạt Động");
-            //}
+            foreach (var x in _servicesAccount.getlst())
+            {
+                gv_data.Rows.Add(x.Acc, x.Pass, x.Sex == 1 ? "Nam" : x.Sex == 0 ? "Nữ" : "", x.YearofBirth, x.Status == true ? "Hoạt Động" : "Không Hoạt Động");
+            }
 
 
         }
@@ -80,19 +86,35 @@ namespace CRUD.Views
         }
         private void btn_them_Click(object sender, EventArgs e)
         {
-
+            
             string ten = tbx_tk.Text;
             string mk = tbx_mk.Text;
             int sex = gioitinh;
             int namSinh = Convert.ToInt16(combx_namsinh.Text);
             bool STT = Stt;
-
+            
            // pt.Add(ten, mk, sex, namSinh, STT);
             MessageBox.Show("thêm thành Công", " thông báo");
-            gridview();
+            
+
         }
 
-     
+
+        private void lưuFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Title = "Chọn đường dẫn file lưu";
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (var sv in _servicesAccount.getlst())
+                {
+                    sb.AppendLine(sv.ToString());
+                }
+
+                File.WriteAllText(save.FileName, sb.ToString());
+            }
+        }
     }
 }
 

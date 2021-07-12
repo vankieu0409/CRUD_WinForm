@@ -23,16 +23,17 @@ namespace CRUD.Views
 
         #region MyRegion
 
-        
-
-       
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
             this.gb_TaoTK = new System.Windows.Forms.GroupBox();
             this.btn_ShowPass = new System.Windows.Forms.Button();
             this.cbx_Namsinh = new System.Windows.Forms.ComboBox();
             this.tbx_mk = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbx_acc = new System.Windows.Forms.TextBox();
             this.rbtn_nu = new System.Windows.Forms.RadioButton();
             this.rbtn_nam = new System.Windows.Forms.RadioButton();
             this.btn_tusinhmk = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@ namespace CRUD.Views
             this.gb_TaoTK.Controls.Add(this.btn_ShowPass);
             this.gb_TaoTK.Controls.Add(this.cbx_Namsinh);
             this.gb_TaoTK.Controls.Add(this.tbx_mk);
-            this.gb_TaoTK.Controls.Add(this.textBox1);
+            this.gb_TaoTK.Controls.Add(this.tbx_acc);
             this.gb_TaoTK.Controls.Add(this.rbtn_nu);
             this.gb_TaoTK.Controls.Add(this.rbtn_nam);
             this.gb_TaoTK.Controls.Add(this.btn_tusinhmk);
@@ -95,13 +96,13 @@ namespace CRUD.Views
             this.tbx_mk.TabIndex = 9;
             this.tbx_mk.Text = "1";
             // 
-            // textBox1
+            // tbx_acc
             // 
-            this.textBox1.Location = new System.Drawing.Point(88, 24);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(168, 22);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.Text = "beubau_csnv@gmail.com";
+            this.tbx_acc.Location = new System.Drawing.Point(88, 24);
+            this.tbx_acc.Name = "tbx_acc";
+            this.tbx_acc.Size = new System.Drawing.Size(168, 22);
+            this.tbx_acc.TabIndex = 8;
+            this.tbx_acc.Text = "beubau_csnv@gmail.com";
             // 
             // rbtn_nu
             // 
@@ -141,6 +142,7 @@ namespace CRUD.Views
             this.btn_Taotk.TabIndex = 4;
             this.btn_Taotk.Text = "Tạo Tài Khoản";
             this.btn_Taotk.UseVisualStyleBackColor = true;
+            this.btn_Taotk.Click += new System.EventHandler(this.btn_Taotk_Click);
             // 
             // lbl_Namsinh
             // 
@@ -154,7 +156,7 @@ namespace CRUD.Views
             // lbl_sex
             // 
             this.lbl_sex.AutoSize = true;
-            this.lbl_sex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_sex.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.lbl_sex.Location = new System.Drawing.Point(9, 112);
             this.lbl_sex.Name = "lbl_sex";
             this.lbl_sex.Size = new System.Drawing.Size(62, 18);
@@ -164,7 +166,7 @@ namespace CRUD.Views
             // lbl_MK
             // 
             this.lbl_MK.AutoSize = true;
-            this.lbl_MK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_MK.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.lbl_MK.Location = new System.Drawing.Point(0, 72);
             this.lbl_MK.Name = "lbl_MK";
             this.lbl_MK.Size = new System.Drawing.Size(71, 18);
@@ -174,7 +176,7 @@ namespace CRUD.Views
             // lbl_tk
             // 
             this.lbl_tk.AutoSize = true;
-            this.lbl_tk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_tk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.lbl_tk.Location = new System.Drawing.Point(-4, 28);
             this.lbl_tk.Name = "lbl_tk";
             this.lbl_tk.Size = new System.Drawing.Size(75, 18);
@@ -192,7 +194,6 @@ namespace CRUD.Views
             this.gb_TaoTK.ResumeLayout(false);
             this.gb_TaoTK.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
 #endregion

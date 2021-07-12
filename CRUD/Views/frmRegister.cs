@@ -7,14 +7,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CRUD.IServices;
+using CRUD.models;
+using CRUD.Services;
 
 namespace CRUD.Views
 {
+    
     public partial class frmRegister : Form
     {
+        private IServicesAccount _servicesAccount;
+        private IServiceFile _serviceFile;
+        private string _fileNamePath;
+        private List<Accounts> _lstAccounts;
         public frmRegister()
         {
             InitializeComponent();
+            //khởi tạo
+            _serviceFile = new SerViceFiles();
+            _servicesAccount = new ServicesAcounts();
+            rbtn_nam.Checked = true;
+            loadNamSinh();
+            cbx_Namsinh.SelectedIndex = cbx_Namsinh.Items.Count - 20;
+        }
+
+        void loadNamSinh()
+        {
+            foreach (var x in _servicesAccount.getYearofBirth())
+            {
+                cbx_Namsinh.Items.Add(x);
+            }
         }
         private void btn_tusinhmk_Click(object sender, EventArgs e)
         {
@@ -47,6 +69,26 @@ namespace CRUD.Views
                 cbx_Namsinh.Items.Add(temp);
                 temp++;
             }
+        }
+
+        public void SenderfilenamePathFormLogin(string Path)
+        {
+            _fileNamePath = Path;// gán đường dẫn từ form login
+        }
+
+        void loadData()
+        {
+            _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);
+        }
+
+        private void btn_Taotk_Click(object sender, EventArgs e)
+        {
+           loadData();//đọc data từ file trước;
+           Accounts accounts = new Accounts();
+           accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count;
+           accounts.Acc = textBox1;
+            accounts.Sex = rbtn_nam.Checked ? 1 : 0;
+            accounts.YearofBirth= ( )
         }
     }
 }
