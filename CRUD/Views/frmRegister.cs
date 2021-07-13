@@ -93,7 +93,7 @@ namespace CRUD.Views
             _lstAccounts.Add(accounts);
             string temp = _serviceFile.SaveFile(_fileNamePath, _lstAccounts);
             MessageBox.Show(temp, " thông báo");
-            this.Hide();
+            this.Close();
             frmLogin frmLogin = new frmLogin();
             frmLogin.Show();
         }

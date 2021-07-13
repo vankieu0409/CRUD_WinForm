@@ -52,9 +52,10 @@ namespace CRUD.Views
             if (_servicesAccount.getlst().Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text) != null)
             {
                 MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
+                frmMain a = new frmMain();
                 this.Hide();
-                frmMain frmMain = new frmMain();
-                frmMain.Show();
+                a.ShowDialog();
+                this.Show();
             }
         }
 
@@ -87,7 +88,8 @@ namespace CRUD.Views
             frmRegister.SenderfilenamePathFormLogin(
                 _fileNamePath); // gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
             this.Hide();
-            frmRegister.Show();
+            frmRegister.ShowDialog();
+            this.Show();
         }
     }
 }
