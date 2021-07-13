@@ -17,7 +17,7 @@ namespace CRUD.Views
     {
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
-        private string _fileNamePath;
+        private string _fileNamePath= @"E:\C# (Sharp)\C#3\CRUD\buồn.txt";
         private List<Accounts> _lstAccounts;
 
         public frmLogin()

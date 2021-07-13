@@ -90,8 +90,6 @@ namespace CRUD.Views
             accounts.Pass = tbx_mk.Text;
             accounts.Sex = rbtn_nam.Checked ? 1 : 0;
             accounts.YearofBirth = Convert.ToInt16((cbx_Namsinh.SelectedItem));
-            
-            MessageBox.Show(accounts.Acc+accounts.Id+accounts.Status+accounts.Pass+accounts.Sex+accounts.YearofBirth+accounts.Status+" "+ _lstAccounts, "thông báo");
             _lstAccounts.Add(accounts);
             string temp = _serviceFile.SaveFile(_fileNamePath, _lstAccounts);
             MessageBox.Show(temp, " thông báo");
