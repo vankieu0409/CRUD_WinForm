@@ -54,6 +54,7 @@ namespace CRUD.Views
                 MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
                 frmMain a = new frmMain();
                 this.Hide();
+                a.SenderfilenamePathFormLogin(tbx_mk,_fileNamePath);
                 a.ShowDialog();
                 this.Show();
             }
