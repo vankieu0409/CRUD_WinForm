@@ -54,7 +54,7 @@ namespace CRUD.Views
             this.lbl_mk = new System.Windows.Forms.Label();
             this.lbl_tk = new System.Windows.Forms.Label();
             this.hệThốngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lưuFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mn_luuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.đọcFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.đăngXuấtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -325,7 +325,7 @@ namespace CRUD.Views
             // hệThốngToolStripMenuItem
             // 
             this.hệThốngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lưuFileToolStripMenuItem,
+            this.mn_luuFile,
             this.đọcFileToolStripMenuItem,
             this.đăngXuấtToolStripMenuItem,
             this.thoátToolStripMenuItem});
@@ -333,28 +333,29 @@ namespace CRUD.Views
             this.hệThốngToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.hệThốngToolStripMenuItem.Text = "hệ thống";
             // 
-            // lưuFileToolStripMenuItem
+            // mn_luuFile
             // 
-            this.lưuFileToolStripMenuItem.Name = "lưuFileToolStripMenuItem";
-            this.lưuFileToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
-            this.lưuFileToolStripMenuItem.Text = "Lưu File";
+            this.mn_luuFile.Name = "mn_luuFile";
+            this.mn_luuFile.Size = new System.Drawing.Size(224, 26);
+            this.mn_luuFile.Text = "Lưu File";
+            this.mn_luuFile.Click += new System.EventHandler(this.mn_luuFile_Click);
             // 
             // đọcFileToolStripMenuItem
             // 
             this.đọcFileToolStripMenuItem.Name = "đọcFileToolStripMenuItem";
-            this.đọcFileToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.đọcFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.đọcFileToolStripMenuItem.Text = "Đọc File";
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng Xuất";
             // 
             // thoátToolStripMenuItem
             // 
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.thoátToolStripMenuItem.Text = "Thoát";
             // 
             // hackTàiKhoảnToolStripMenuItem
@@ -435,7 +436,7 @@ namespace CRUD.Views
         private System.Windows.Forms.Button btn_them;
         private System.Windows.Forms.Button btn_automk;
         private System.Windows.Forms.ToolStripMenuItem hệThốngToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem lưuFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mn_luuFile;
         private System.Windows.Forms.ToolStripMenuItem đọcFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem đăngXuấtToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thoátToolStripMenuItem;

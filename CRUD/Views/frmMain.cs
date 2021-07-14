@@ -79,7 +79,7 @@ namespace CRUD.Views
             accounts.Pass = tbx_mk.Text;
             accounts.Sex = rbt_Nam.Checked ? 1 : 0;
             accounts.YearofBirth = Convert.ToInt16((combx_namsinh.SelectedItem));
-            accounts.Status = STT;//cbx_khd.Checked?false:true;
+            accounts.Status = cbx_khd.Checked?false:true;
             //Sau khi gán thì dùng chứ năng thêm đối tượng
             _servicesAccount.addAccount(accounts);
             // sau Khi thêm xong thì tiến hành load data
@@ -100,6 +100,11 @@ namespace CRUD.Views
             {
                 cbx_hd.Checked = false;
             }
+        }
+
+        private void mn_luuFile_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
         }
 
         /*  void loadNawmSinh()
