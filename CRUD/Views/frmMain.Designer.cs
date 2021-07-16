@@ -110,6 +110,7 @@ namespace CRUD.Views
             this.gv_data.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gv_data.Size = new System.Drawing.Size(1002, 251);
             this.gv_data.TabIndex = 5;
+            this.gv_data.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv_data_CellClick);
             // 
             // tbx_Search
             // 
@@ -117,6 +118,7 @@ namespace CRUD.Views
             this.tbx_Search.Name = "tbx_Search";
             this.tbx_Search.Size = new System.Drawing.Size(152, 22);
             this.tbx_Search.TabIndex = 4;
+            this.tbx_Search.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbx_Search_KeyUp);
             // 
             // lbl_search
             // 
@@ -149,6 +151,7 @@ namespace CRUD.Views
             this.btn_sua.TabIndex = 3;
             this.btn_sua.Text = "Sửa";
             this.btn_sua.UseVisualStyleBackColor = true;
+            this.btn_sua.Click += new System.EventHandler(this.btn_sua_Click);
             // 
             // btn_clear
             // 
@@ -167,6 +170,7 @@ namespace CRUD.Views
             this.btn_xoa.TabIndex = 1;
             this.btn_xoa.Text = "Xóa";
             this.btn_xoa.UseVisualStyleBackColor = true;
+            this.btn_xoa.Click += new System.EventHandler(this.btn_xoa_Click);
             // 
             // btn_them
             // 
@@ -336,26 +340,26 @@ namespace CRUD.Views
             // mn_luuFile
             // 
             this.mn_luuFile.Name = "mn_luuFile";
-            this.mn_luuFile.Size = new System.Drawing.Size(224, 26);
+            this.mn_luuFile.Size = new System.Drawing.Size(162, 26);
             this.mn_luuFile.Text = "Lưu File";
             this.mn_luuFile.Click += new System.EventHandler(this.mn_luuFile_Click);
             // 
             // đọcFileToolStripMenuItem
             // 
             this.đọcFileToolStripMenuItem.Name = "đọcFileToolStripMenuItem";
-            this.đọcFileToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.đọcFileToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.đọcFileToolStripMenuItem.Text = "Đọc File";
             // 
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng Xuất";
             // 
             // thoátToolStripMenuItem
             // 
             this.thoátToolStripMenuItem.Name = "thoátToolStripMenuItem";
-            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.thoátToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
             this.thoátToolStripMenuItem.Text = "Thoát";
             // 
             // hackTàiKhoảnToolStripMenuItem
