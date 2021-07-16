@@ -149,6 +149,7 @@ namespace CRUD.Views
 
         void loadSan()
         {
+            DataGridViewCellEventArgs e = new DataGridViewCellEventArgs();
 
             int rowIndex = 0;
             if (rowIndex == _lstAccounts.Count) return;
