@@ -44,7 +44,7 @@ namespace CRUD.Views
                 return;
 
             }
-            if (_lstAcc.Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status != false)!=null)
+            if (_lstAcc.Any(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status != false))
             {
                 MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
                 frmMain a = new frmMain();
@@ -58,11 +58,13 @@ namespace CRUD.Views
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
+          
             if (MessageBox.Show("Bạn Có Muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel) !=
                 System.Windows.Forms.DialogResult.OK)
             {
                 e.Cancel = true;
             }
+
         }
 
         private void btn_Data_Click(object sender, EventArgs e)

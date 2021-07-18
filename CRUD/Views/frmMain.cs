@@ -85,12 +85,20 @@ namespace CRUD.Views
             accounts.Sex = rbt_Nam.Checked ? 1 : 0;
             accounts.YearofBirth = Convert.ToInt16((combx_namsinh.SelectedItem));
             accounts.Status = cbx_hd.Checked;// ? false : true;
-            if (MessageBox.Show("Bạn Có Muốn lưu không?", "Thông báo", MessageBoxButtons.YesNo) ==
+            if (MessageBox.Show("Bạn Có Muốn thêm ACC không?", "Thông báo", MessageBoxButtons.YesNo) ==
               DialogResult.Yes)
             {
-                _servicesAccount.addAccount(accounts);
-                // sau Khi thêm xong thì tiến hành load data
-                LoadDaTa();
+                if (MessageBox.Show("Bạn chăc chắn chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
+                {
+                    if (MessageBox.Show(" Mình nghĩ Bjan chưa chắc Đâu! \n Nhưng bạn có muốn tiếp tục lưu chứ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                            DialogResult.Yes)
+                    {
+                        _servicesAccount.addAccount(accounts);
+                        // sau Khi thêm xong thì tiến hành load data
+                        LoadDaTa();
+                    }
+                }
             }
 
 
@@ -239,8 +247,6 @@ namespace CRUD.Views
                 gv_data.Rows.Add(x.Acc, x.Pass, x.Sex == 1 ? "Nam" : x.Sex == 0 ? "Nữ" : "",
                     x.YearofBirth, x.Status == true ? "Hoạt Động" : "Không Hoạt Động", DateTime.Now.Year - x.YearofBirth, x.Id);
             }
-
-
         }
 
         private void tbx_tk_TextChanged(object sender, EventArgs e)

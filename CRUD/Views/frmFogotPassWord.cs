@@ -45,7 +45,7 @@ namespace CRUD.Views
         private void btn_Tieptheo_Click(object sender, EventArgs e)
         {
             lstAcc = svFile.OpenFile<Accounts>(path);
-            var b = lstAcc.Where(a =>
+            var b = SvAcc.getlst().Where(a =>
                 a.Acc == tbx_tk.Text && a.Sex == (rbt_Nam.Checked ? 1 : 0) &&
                 a.YearofBirth == Convert.ToInt16(combx_namsinh.Text)).ToList();
             if (b!= null)
