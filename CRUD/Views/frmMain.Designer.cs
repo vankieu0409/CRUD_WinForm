@@ -308,7 +308,7 @@ namespace CRUD.Views
             this.tbx_tk.Name = "tbx_tk";
             this.tbx_tk.Size = new System.Drawing.Size(152, 22);
             this.tbx_tk.TabIndex = 2;
-            this.tbx_tk.TextChanged += new System.EventHandler(this.tbx_tk_TextChanged);
+       
             // 
             // lbl_mk
             // 
@@ -400,6 +400,7 @@ namespace CRUD.Views
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmMain";
             this.Text = "Màn hình chính";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.gr_hethong.ResumeLayout(false);
             this.gr_hethong.PerformLayout();
             this.groupBox1.ResumeLayout(false);

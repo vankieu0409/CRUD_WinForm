@@ -52,18 +52,19 @@ namespace CRUD.Views
                 MessageBox.Show("Mật khẩu phải có 3 ký tự trở lên", " Erorr 400");
                 return false;
             }
-            
+
             return true;
         }
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-           // if (check() ==true)
+            // if (check() ==true)
+            if (_servicesAccount.getlst() != null)
             {
                 _lstAcc = new List<Accounts>();
                 _lstAcc = _serviceFile.OpenFile<Accounts>(_fileNamePath);
                 lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
-                if (_lstAcc.Any(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status != false))
+                if (_lstAcc.Any(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status == true))
                 {
                     MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
                     frmMain a = new frmMain();
@@ -72,7 +73,10 @@ namespace CRUD.Views
                     a.ShowDialog();
                     this.Show();
                 }
+                return;
             }
+
+            MessageBox.Show("File Data rỗng ko thể login");
         }
 
 

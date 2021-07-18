@@ -24,6 +24,7 @@ namespace CRUD.Views
         private List<Accounts> _lstAccounts;
         private Accounts accounts;
         private int idAccWhenClick = -1;
+        private int flash = 0;
         public frmMain()
         {
             InitializeComponent();
@@ -127,6 +128,7 @@ namespace CRUD.Views
                             _servicesAccount.addAccount(accounts);
                             // sau Khi thêm xong thì tiến hành load data
                             LoadDaTa();
+                            flash = 1;
                         }
                     }
                 }
@@ -226,6 +228,7 @@ namespace CRUD.Views
             {
                 MessageBox.Show(_servicesAccount.remove(_lstAccounts.Where(c => c.Acc == tbx_tk.Text).Select(c => c.Id).FirstOrDefault()), "thông báo");
                 LoadDaTa();
+                flash = 3;
             }
         }
 
@@ -252,6 +255,7 @@ namespace CRUD.Views
                         MessageBox.Show(_servicesAccount.edit(accounts), " thông báo");
                         LoadDaTa();
                         idAccWhenClick = -1;
+                        flash = 2;
                     }
                 }
             }
@@ -284,15 +288,39 @@ namespace CRUD.Views
             }
         }
 
-        private void tbx_tk_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btn_automk_Click(object sender, EventArgs e)
         {
             Random a = new Random();
             tbx_mk.Text = Convert.ToString(a.Next(3,8));
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (flash==1)
+            {
+                if (MessageBox.Show("Bạn vừa thêm ACC!\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
+                }
+            }
+            if (flash == 2)
+            {
+                if (MessageBox.Show("Bạn vừa sửa thông tin Acc !\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
+                }
+            }
+            if (flash == 3)
+            {
+                if (MessageBox.Show("Bạn vừa xóa ACC!\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
+                }
+            }
         }
     }
 

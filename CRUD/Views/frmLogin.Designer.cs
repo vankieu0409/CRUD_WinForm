@@ -67,8 +67,7 @@ namespace CRUD.Views
             this.tbx_tk.Name = "tbx_tk";
             this.tbx_tk.Size = new System.Drawing.Size(160, 22);
             this.tbx_tk.TabIndex = 1;
-            this.tbx_tk.Text = "kieu";
-
+            this.tbx_tk.Text = "hiplee96";
             // 
             // btn_login
             // 
@@ -97,7 +96,7 @@ namespace CRUD.Views
             this.tbx_mk.PasswordChar = '*';
             this.tbx_mk.Size = new System.Drawing.Size(160, 22);
             this.tbx_mk.TabIndex = 2;
-            this.tbx_mk.Text = "1";
+            this.tbx_mk.Text = "1998";
             // 
             // lbl_dk
             // 
