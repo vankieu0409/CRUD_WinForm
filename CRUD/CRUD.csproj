@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\CheckEveryThing.cs" />
+    <Compile Include="IServices\ICheck.cs" />
     <Compile Include="IServices\IServiceFile.cs" />
     <Compile Include="IServices\IServicesAccount.cs" />
     <Compile Include="models\Accounts.cs" />
@@ -86,6 +88,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\frmFogotPassWord.resx">
+      <DependentUpon>frmFogotPassWord.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,7 +8,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using CRUD.IServices;
 using CRUD.models;
 using CRUD.Services;
@@ -149,7 +148,7 @@ namespace CRUD.Views
 
         void loadSan()
         {
-            DataGridViewCellEventArgs e = new DataGridViewCellEventArgs();
+       
 
             int rowIndex = 0;
             if (rowIndex == _lstAccounts.Count) return;

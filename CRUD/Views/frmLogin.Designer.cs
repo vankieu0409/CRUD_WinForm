@@ -59,7 +59,7 @@ namespace CRUD.Views
             this.lbl_Quenmk.TabIndex = 3;
             this.lbl_Quenmk.TabStop = true;
             this.lbl_Quenmk.Text = "Quên mật khẩu?";
-
+            this.lbl_Quenmk.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lbl_Quenmk_LinkClicked);
             // 
             // tbx_tk
             // 

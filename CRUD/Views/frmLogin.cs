@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CRUD.IServices;
 using CRUD.models;
 using CRUD.Services;
@@ -15,46 +16,39 @@ namespace CRUD.Views
 {
     public partial class frmLogin : Form
     {
+        private ICheck checkEvreyThings;
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
-        private string _fileNamePath= @"E:\C# (Sharp)\C#3\CRUD\buồn.txt";
+        private string _fileNamePath = @"E:\C# (Sharp)\C#3\CRUD\buồn.txt";
         private List<Accounts> _lstAccounts;
+        private List<Accounts> _lstAcc;
 
         public frmLogin()
         {
+            checkEvreyThings = new CheckEveryThing();
             _serviceFile = new SerViceFiles();
             _servicesAccount = new ServicesAcounts();
             InitializeComponent();
         }
-        
+
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            //    if (tbx_tk.Text == "kieu" && tbx_mk.Text == "1")
-            //    {
-            //        frmMain a = new frmMain();
-            //        this.Hide();
-            //        a.ShowDialog();
-            //        this.Show();
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Bạn Nhập Sai Tài khỏn hoặc Mật khẩu!\n Mời Nhập lại", "THÔNG BÁO");
-            //        return;
-            //    }
-
+            _lstAcc = new List<Accounts>();
+            _lstAcc = _serviceFile.OpenFile<Accounts>(_fileNamePath);
             lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
-            if (string.IsNullOrWhiteSpace(tbx_tk.Text)|| string.IsNullOrWhiteSpace(tbx_mk.Text) )
+            if (checkEvreyThings.checkNull(tbx_tk.Text) || checkEvreyThings.checkNull(tbx_mk.Text))
             {
                 MessageBox.Show(" Không đƯợc để trống Tài Khoản Và Mật Khẩu", " Erorr 400");
                 return;
+
             }
-            if (_servicesAccount.getlst().Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text) != null)
+            if (_lstAcc.Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status == true) != null)
             {
                 MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
                 frmMain a = new frmMain();
                 this.Hide();
-                a.SenderfilenamePathFormLogin(tbx_mk,_fileNamePath);
+                a.SenderfilenamePathFormLogin(tbx_mk, _fileNamePath);
                 a.ShowDialog();
                 this.Show();
             }
@@ -79,7 +73,7 @@ namespace CRUD.Views
                 lbl_fileNamePath.Text = _fileNamePath;
                 _lstAccounts = _serviceFile.OpenFile<Accounts>(_fileNamePath);// đọc file lên và lấy giá trị gán lại cho List
                 _servicesAccount.fillDataFormtoService(_lstAccounts);// Đổ giá trị vào cho List ở bên AccountService
-                lbl_checkdata.Text = (_servicesAccount.getlst()==null?0:_servicesAccount.getlst().Count).ToString();
+                lbl_checkdata.Text = (_servicesAccount.getlst() == null ? 0 : _servicesAccount.getlst().Count).ToString();
             }
         }
 
@@ -90,6 +84,14 @@ namespace CRUD.Views
                 _fileNamePath); // gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
             this.Hide();
             frmRegister.ShowDialog();
+            this.Show();
+        }
+
+        private void lbl_Quenmk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmFogotPassWord a = new frmFogotPassWord();
+            this.Hide();
+            a.ShowDialog();
             this.Show();
         }
     }
