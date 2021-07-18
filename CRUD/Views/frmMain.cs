@@ -299,7 +299,7 @@ namespace CRUD.Views
         {
             if (flash==1)
             {
-                if (MessageBox.Show("Bạn vừa thêm ACC!\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                if (MessageBox.Show("Bạn vừa thêm ACC mà chưa lưu Danh sách mới!\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
                 {
                     MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
@@ -307,7 +307,7 @@ namespace CRUD.Views
             }
             if (flash == 2)
             {
-                if (MessageBox.Show("Bạn vừa sửa thông tin Acc !\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                if (MessageBox.Show("Bạn vừa sửa thông tin Acc mà chưa lưu Danh sách mới !\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
                 {
                     MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
@@ -315,7 +315,7 @@ namespace CRUD.Views
             }
             if (flash == 3)
             {
-                if (MessageBox.Show("Bạn vừa xóa ACC!\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                if (MessageBox.Show("Bạn vừa xóa ACC mà chưa lưu Danh sách mới!\n Bạn Muốn lưu DS hiện tại không?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
                 {
                     MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
