@@ -18,7 +18,7 @@ namespace CRUD.IServices
 
         public bool CheckYearofBirth(string year)
         {
-            return Regex.IsMatch(year, @"\d^+$");
+            return Regex.IsMatch(year, @"[^\d+$]");
         }
 
         public bool checkMK(string Pass)

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 using CRUD.IServices;
 using CRUD.models;
 using CRUD.Services;
@@ -16,7 +17,7 @@ namespace CRUD.Views
 {
     public partial class frmMain : Form
     {
-        
+
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
         private string _fileNamePath;
@@ -76,6 +77,7 @@ namespace CRUD.Views
 
         private void btn_them_Click(object sender, EventArgs e)
         {
+
             Accounts accounts = new Accounts();
             accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count; // Id tự sinh
             accounts.Acc = tbx_tk.Text;
@@ -83,11 +85,20 @@ namespace CRUD.Views
             accounts.Sex = rbt_Nam.Checked ? 1 : 0;
             accounts.YearofBirth = Convert.ToInt16((combx_namsinh.SelectedItem));
             accounts.Status = cbx_khd.Checked ? false : true;
-            //Sau khi gán thì dùng chứ năng thêm đối tượng
-            _servicesAccount.addAccount(accounts);
-            // sau Khi thêm xong thì tiến hành load data
-            LoadDaTa();
+            if (MessageBox.Show("Bạn Có Muốn lưu không?", "Thông báo", MessageBoxButtons.YesNo) ==
+              DialogResult.Yes)
+            {
+                _servicesAccount.addAccount(accounts);
+                // sau Khi thêm xong thì tiến hành load data
+                LoadDaTa();
+            }
+
+
         }
+
+
+        //Sau khi gán thì dùng chứ năng thêm đối tượng
+
 
         private void cbx_hd_CheckedChanged(object sender, EventArgs e)
         {
@@ -107,7 +118,11 @@ namespace CRUD.Views
 
         private void mn_luuFile_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
+            if (MessageBox.Show("Bạn Có Muốn lưu không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
+            {
+                MessageBox.Show(_serviceFile.SaveFile(_fileNamePath, _lstAccounts), " thông báo");
+            }
         }
 
         /*  
@@ -148,7 +163,7 @@ namespace CRUD.Views
 
         void loadSan()
         {
-       
+
 
             int rowIndex = 0;
             if (rowIndex == _lstAccounts.Count) return;
@@ -168,10 +183,13 @@ namespace CRUD.Views
 
         private void btn_xoa_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(
-                _servicesAccount.remove(
-                    _lstAccounts.Where(c => c.Acc == tbx_tk.Text).Select(c => c.Id).FirstOrDefault()), "thông báo");
-            LoadDaTa();
+            if (MessageBox.Show("Bạn Có Muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+            {
+
+                MessageBox.Show(_servicesAccount.remove(_lstAccounts.Where(c => c.Acc == tbx_tk.Text).Select(c => c.Id).FirstOrDefault()), "thông báo");
+                LoadDaTa();
+            }
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
@@ -183,9 +201,18 @@ namespace CRUD.Views
             accounts.Sex = rbt_Nam.Checked ? 1 : 0;
             accounts.YearofBirth = Convert.ToInt16(combx_namsinh.SelectedItem);
             accounts.Status = cbx_hd.Checked;
-            MessageBox.Show(_servicesAccount.edit(accounts), " thông báo");
-            LoadDaTa();
-            idAccWhenClick = -1;
+
+            if (MessageBox.Show(" muốn Sửa chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+            {
+                if (MessageBox.Show("Bạn chắc chắn đã điền thông tin rồi chứ!", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
+                {
+                    MessageBox.Show(_servicesAccount.edit(accounts), " thông báo");
+                    LoadDaTa();
+                    idAccWhenClick = -1;
+                }
+            }
         }
 
         private void tbx_Search_KeyUp(object sender, KeyEventArgs e)

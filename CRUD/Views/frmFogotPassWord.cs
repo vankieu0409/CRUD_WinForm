@@ -46,15 +46,16 @@ namespace CRUD.Views
         {
             lstAcc = svFile.OpenFile<Accounts>(path);
 
-            var b = lstAcc.Any(a => a.Acc == tbx_tk.Text && a.Sex == (rbt_Nam.Checked ? 1 : 0) && a.YearofBirth == Convert.ToInt16(combx_namsinh.SelectedItem));
-            if (b== true)
-            {
-                MessageBox.Show(" tài khoản bạn tìm không có!", " thông báo");
-            }
-            else
+
+            if (lstAcc.Where(a => a.Acc == tbx_tk.Text && a.Sex == (rbt_Nam.Checked ? 1 : 0) && a.YearofBirth == Convert.ToInt16(combx_namsinh.SelectedItem)).Count()<0)
             {
                 MessageBox.Show(" Đã tìm thấy tài khoản", " Thông báo");
                 mkmoi.Show();
+            }
+
+            else
+            {
+                MessageBox.Show(" tài khoản bạn tìm không có!", " thông báo");
             }
         }
 
@@ -70,7 +71,7 @@ namespace CRUD.Views
 
             if (check.checkMK(mkNew.Text) || check.checkMK(xn_mkNew.Text))
             {
-                
+
             }
             if (mkNew.Text != xn_mkNew.Text)
             {

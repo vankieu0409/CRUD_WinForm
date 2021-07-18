@@ -29,6 +29,7 @@ namespace CRUD.Views
             _serviceFile = new SerViceFiles();
             _servicesAccount = new ServicesAcounts();
             InitializeComponent();
+
         }
 
 
@@ -80,8 +81,7 @@ namespace CRUD.Views
         private void lbl_dk_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmRegister frmRegister = new frmRegister();
-            frmRegister.SenderfilenamePathFormLogin(
-                _fileNamePath); // gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
+            frmRegister.SenderfilenamePathFormLogin(_fileNamePath); // gọi phương thức bên claas đăng ký và truyền đường dẫn sang để gấn lại;
             this.Hide();
             frmRegister.ShowDialog();
             this.Show();
