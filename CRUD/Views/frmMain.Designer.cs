@@ -213,6 +213,7 @@ namespace CRUD.Views
             this.btn_automk.TabIndex = 12;
             this.btn_automk.Text = "Tự sinh mật khẩu";
             this.btn_automk.UseVisualStyleBackColor = true;
+            this.btn_automk.Click += new System.EventHandler(this.btn_automk_Click);
             // 
             // cbx_khd
             // 

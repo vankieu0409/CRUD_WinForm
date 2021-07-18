@@ -17,7 +17,7 @@ namespace CRUD.Views
 {
     public partial class frmMain : Form
     {
-
+        private ICheck checkEveryThings;
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
         private string _fileNamePath;
@@ -27,6 +27,7 @@ namespace CRUD.Views
         public frmMain()
         {
             InitializeComponent();
+            checkEveryThings = new CheckEveryThing();
             _serviceFile = new SerViceFiles();
             _servicesAccount = new ServicesAcounts();
             _lstAccounts = new List<Accounts>();
@@ -43,7 +44,33 @@ namespace CRUD.Views
                 combx_namsinh.Items.Add(VARIABLE);
             }
         }
+        bool check()
+        {
+            if (checkEveryThings.checkNull(tbx_tk.Text) || checkEveryThings.checkNull(tbx_mk.Text))
+            {
+                MessageBox.Show(" Không đƯợc để trống Tài Khoản Và Mật Khẩu", " Erorr 400");
+                return false;
+            }
 
+            if (checkEveryThings.CheckAcc(tbx_tk.Text) == false)
+            {
+                MessageBox.Show("Tên Tài Khoản Phải có cả chữ và số", " Erorr 400");
+                return false;
+            }
+
+            if (checkEveryThings.checkMK(tbx_mk.Text) == false)
+            {
+                MessageBox.Show("Mật khẩu phải có 3 ký tự trở lên", " Erorr 400");
+                return false;
+            }
+            if (checkEveryThings.CheckYearofBirth(combx_namsinh.Text) == false)
+            {
+                MessageBox.Show("Năm Sinh không đượcc nhập chữ", " Erorr 400");
+                return false;
+            }
+
+            return true;
+        }
         void LoadDaTa()
         {
             _lstAccounts = new List<Accounts>();// khởi tạo lại
@@ -77,31 +104,34 @@ namespace CRUD.Views
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-
-            Accounts accounts = new Accounts();
-            accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count+1; // Id tự sinh
-            accounts.Acc = tbx_tk.Text;
-            accounts.Pass = tbx_mk.Text;
-            accounts.Sex = rbt_Nam.Checked ? 1 : 0;
-            accounts.YearofBirth = Convert.ToInt16((combx_namsinh.SelectedItem));
-            accounts.Status = cbx_hd.Checked;// ? false : true;
-            if (MessageBox.Show("Bạn Có Muốn thêm ACC không?", "Thông báo", MessageBoxButtons.YesNo) ==
-              DialogResult.Yes)
+            if (check()!=false)
             {
-                if (MessageBox.Show("Bạn chăc chắn chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
-                        DialogResult.Yes)
+            
+                Accounts accounts = new Accounts();
+                accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count + 1; // Id tự sinh
+                accounts.Acc = tbx_tk.Text;
+                accounts.Pass = tbx_mk.Text;
+                accounts.Sex = rbt_Nam.Checked ? 1 : 0;
+                accounts.YearofBirth = Convert.ToInt16((combx_namsinh.SelectedItem));
+                accounts.Status = cbx_hd.Checked; // ? false : true;
+                if (MessageBox.Show("Bạn Có Muốn thêm ACC không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
-                    if (MessageBox.Show(" Mình nghĩ Bjan chưa chắc Đâu! \n Nhưng bạn có muốn tiếp tục lưu chứ?", "Thông báo", MessageBoxButtons.YesNo) ==
-                            DialogResult.Yes)
+                    if (MessageBox.Show("Bạn chăc chắn chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
                     {
-                        _servicesAccount.addAccount(accounts);
-                        // sau Khi thêm xong thì tiến hành load data
-                        LoadDaTa();
+                        if (MessageBox.Show(" Mình nghĩ Bjan chưa chắc Đâu! \n Nhưng bạn có muốn tiếp tục lưu chứ?",
+                                "Thông báo", MessageBoxButtons.YesNo) ==
+                            DialogResult.Yes)
+                        {
+                            _servicesAccount.addAccount(accounts);
+                            // sau Khi thêm xong thì tiến hành load data
+                            LoadDaTa();
+                        }
                     }
                 }
+
             }
-
-
         }
 
 
@@ -201,23 +231,28 @@ namespace CRUD.Views
 
         private void btn_sua_Click(object sender, EventArgs e)
         {
-            accounts = new Accounts();
-            accounts.Id = idAccWhenClick;
-            accounts.Acc = tbx_tk.Text;
-            accounts.Pass = tbx_mk.Text;
-            accounts.Sex = rbt_Nam.Checked ? 1 : 0;
-            accounts.YearofBirth = Convert.ToInt16(combx_namsinh.SelectedItem);
-            accounts.Status = cbx_hd.Checked;
-
-            if (MessageBox.Show(" muốn Sửa chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
-                    DialogResult.Yes)
+            if (check() == true)
             {
-                if (MessageBox.Show("Bạn chắc chắn đã điền thông tin rồi chứ!", "Thông báo", MessageBoxButtons.YesNo) ==
-                        DialogResult.Yes)
+
+                accounts = new Accounts();
+                accounts.Id = idAccWhenClick;
+                accounts.Acc = tbx_tk.Text;
+                accounts.Pass = tbx_mk.Text;
+                accounts.Sex = rbt_Nam.Checked ? 1 : 0;
+                accounts.YearofBirth = Convert.ToInt16(combx_namsinh.SelectedItem);
+                accounts.Status = cbx_hd.Checked;
+
+                if (MessageBox.Show(" muốn Sửa chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
-                    MessageBox.Show(_servicesAccount.edit(accounts), " thông báo");
-                    LoadDaTa();
-                    idAccWhenClick = -1;
+                    if (MessageBox.Show("Bạn chắc chắn đã điền thông tin rồi chứ!", "Thông báo",
+                            MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
+                    {
+                        MessageBox.Show(_servicesAccount.edit(accounts), " thông báo");
+                        LoadDaTa();
+                        idAccWhenClick = -1;
+                    }
                 }
             }
         }
@@ -252,6 +287,12 @@ namespace CRUD.Views
         private void tbx_tk_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_automk_Click(object sender, EventArgs e)
+        {
+            Random a = new Random();
+            tbx_mk.Text = Convert.ToString(a.Next(3,8));
         }
     }
 

@@ -68,6 +68,7 @@ namespace CRUD.Views
             this.tbx_tk.Size = new System.Drawing.Size(160, 22);
             this.tbx_tk.TabIndex = 1;
             this.tbx_tk.Text = "kieu";
+
             // 
             // btn_login
             // 

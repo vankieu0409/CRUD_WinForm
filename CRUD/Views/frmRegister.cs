@@ -16,6 +16,7 @@ namespace CRUD.Views
 {
     public partial class frmRegister : Form
     {
+        private ICheck checkEveryThings;
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
         private string _fileNamePath;
@@ -28,6 +29,7 @@ namespace CRUD.Views
             //khởi tạo
             _serviceFile = new SerViceFiles();
             _servicesAccount = new ServicesAcounts();
+            checkEveryThings = new CheckEveryThing();
             rbtn_nam.Checked = true;
             loadNamSinh();
             _lstAccounts = new List<Accounts>();
@@ -42,10 +44,39 @@ namespace CRUD.Views
             }
         }
 
+        bool check()
+        {
+            if (checkEveryThings.checkNull(tbx_tk.Text) || checkEveryThings.checkNull(tbx_mk.Text))
+            {
+                MessageBox.Show(" Không đƯợc để trống Tài Khoản Và Mật Khẩu", " Erorr 400");
+                return false;
+            }
+
+            if (checkEveryThings.CheckAcc(tbx_tk.Text) == false)
+            {
+                MessageBox.Show("Tên Tài Khoản Phải có cả chữ số", " Erorr 400");
+                return false;
+            }
+
+            if (checkEveryThings.checkMK(tbx_mk.Text) == false)
+            {
+                MessageBox.Show("Mật khẩu phải có 3 ký tự trở lên", " Erorr 400");
+                return false;
+            }
+            if (checkEveryThings.CheckYearofBirth(cbx_Namsinh.Text) == false)
+            {
+                MessageBox.Show("Năm Sinh không đượcc nhập chữ", " Erorr 400");
+                return false;
+            }
+
+            return true;
+        }
+
+
         private void btn_tusinhmk_Click(object sender, EventArgs e)
         {
             Random n = new Random();
-               tbx_mk.Text = Convert.ToString(n.Next());
+            tbx_mk.Text = Convert.ToString(n.Next());
         }
 
 
@@ -83,19 +114,22 @@ namespace CRUD.Views
 
         private void btn_Taotk_Click(object sender, EventArgs e)
         {
-            loadData(); //đọc data từ file trước;
-            Accounts accounts = new Accounts();
-            accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count; // Id tự sinh
-            accounts.Acc = tbx_tk.Text;
-            accounts.Pass = tbx_mk.Text;
-            accounts.Sex = rbtn_nam.Checked ? 1 : 0;
-            accounts.YearofBirth = Convert.ToInt16((cbx_Namsinh.SelectedItem));
-            _lstAccounts.Add(accounts);
-            string temp = _serviceFile.SaveFile(_fileNamePath, _lstAccounts);
-            MessageBox.Show(temp, " thông báo");
-            this.Close();
-            frmLogin frmLogin = new frmLogin();
-            frmLogin.Show();
+            if (check() != false)
+            {
+                loadData(); //đọc data từ file trước;
+                Accounts accounts = new Accounts();
+                accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count; // Id tự sinh
+                accounts.Acc = tbx_tk.Text;
+                accounts.Pass = tbx_mk.Text;
+                accounts.Sex = rbtn_nam.Checked ? 1 : 0;
+                accounts.YearofBirth = Convert.ToInt16((cbx_Namsinh.SelectedItem));
+                _lstAccounts.Add(accounts);
+                string temp = _serviceFile.SaveFile(_fileNamePath, _lstAccounts);
+                MessageBox.Show(temp, " thông báo");
+                this.Close();
+                frmLogin frmLogin = new frmLogin();
+                frmLogin.Show();
+            }
         }
 
         private void btn_ShowPass_MouseDown(object sender, MouseEventArgs e)

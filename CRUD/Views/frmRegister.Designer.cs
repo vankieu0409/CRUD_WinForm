@@ -186,7 +186,7 @@ namespace CRUD.Views
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(459, 264);
+            this.ClientSize = new System.Drawing.Size(469, 302);
             this.Controls.Add(this.gb_TaoTK);
             this.Name = "frmRegister";
             this.Text = "Register";

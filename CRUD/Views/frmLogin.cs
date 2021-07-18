@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,7 @@ namespace CRUD.Views
 {
     public partial class frmLogin : Form
     {
-        private ICheck checkEvreyThings;
+        private ICheck checkEveryThings;
         private IServicesAccount _servicesAccount;
         private IServiceFile _serviceFile;
         private string _fileNamePath = @"E:\C# (Sharp)\C#3\CRUD\buồn.txt";
@@ -25,40 +26,59 @@ namespace CRUD.Views
 
         public frmLogin()
         {
-            checkEvreyThings = new CheckEveryThing();
+            checkEveryThings = new CheckEveryThing();
             _serviceFile = new SerViceFiles();
             _servicesAccount = new ServicesAcounts();
             InitializeComponent();
 
         }
 
+        bool check()
+        {
+            if (checkEveryThings.checkNull(tbx_tk.Text) || checkEveryThings.checkNull(tbx_mk.Text))
+            {
+                MessageBox.Show(" Không đƯợc để trống Tài Khoản Và Mật Khẩu", " Erorr 400");
+                return false;
+            }
+
+            if (checkEveryThings.CheckAcc(tbx_tk.Text) == false)
+            {
+                MessageBox.Show("Tên Tài Khoản Phải có cả chữ số", " Erorr 400");
+                return false;
+            }
+
+            if (checkEveryThings.checkMK(tbx_mk.Text) == false)
+            {
+                MessageBox.Show("Mật khẩu phải có 3 ký tự trở lên", " Erorr 400");
+                return false;
+            }
+            
+            return true;
+        }
 
         private void btn_login_Click(object sender, EventArgs e)
         {
-            _lstAcc = new List<Accounts>();
-            _lstAcc = _serviceFile.OpenFile<Accounts>(_fileNamePath);
-            lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
-            if (checkEvreyThings.checkNull(tbx_tk.Text) || checkEvreyThings.checkNull(tbx_mk.Text))
+           // if (check() ==true)
             {
-                MessageBox.Show(" Không đƯợc để trống Tài Khoản Và Mật Khẩu", " Erorr 400");
-                return;
-
-            }
-            if (_lstAcc.Any(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status != false))
-            {
-                MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
-                frmMain a = new frmMain();
-                this.Hide();
-                a.SenderfilenamePathFormLogin(tbx_mk, _fileNamePath);
-                a.ShowDialog();
-                this.Show();
+                _lstAcc = new List<Accounts>();
+                _lstAcc = _serviceFile.OpenFile<Accounts>(_fileNamePath);
+                lbl_checkdata.Text = _servicesAccount.getlst().Count.ToString();
+                if (_lstAcc.Any(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status != false))
+                {
+                    MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
+                    frmMain a = new frmMain();
+                    this.Hide();
+                    a.SenderfilenamePathFormLogin(tbx_mk, _fileNamePath);
+                    a.ShowDialog();
+                    this.Show();
+                }
             }
         }
 
 
         private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
-          
+
             if (MessageBox.Show("Bạn Có Muốn thoát không?", "Thông báo", MessageBoxButtons.OKCancel) !=
                 System.Windows.Forms.DialogResult.OK)
             {
@@ -96,5 +116,6 @@ namespace CRUD.Views
             a.ShowDialog();
             this.Show();
         }
+
     }
 }

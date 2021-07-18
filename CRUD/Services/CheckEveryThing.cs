@@ -13,17 +13,31 @@ namespace CRUD.IServices
 
         public bool CheckAcc(string acc)
         {
-            return acc.Any(char.IsNumber);
+            if (acc.Any(char.IsNumber))
+            {
+                if (acc.Any(char.IsDigit))
+                {
+                    return true;
+                }
+                
+            }
+
+            return false;
         }
 
         public bool CheckYearofBirth(string year)
         {
-            return Regex.IsMatch(year, @"[^\d+$]");
+            if( Regex.IsMatch(year, @"[^\d+$]")==true)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public bool checkMK(string Pass)
         {
-            if (Pass.Length>3)
+            if (Pass.Length>=3)
             {
                 return true;
             }
@@ -36,7 +50,5 @@ namespace CRUD.IServices
             return string.IsNullOrWhiteSpace(text);
 
         }
-
-      
     }
 }
