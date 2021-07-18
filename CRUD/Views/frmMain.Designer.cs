@@ -307,6 +307,7 @@ namespace CRUD.Views
             this.tbx_tk.Name = "tbx_tk";
             this.tbx_tk.Size = new System.Drawing.Size(152, 22);
             this.tbx_tk.TabIndex = 2;
+            this.tbx_tk.TextChanged += new System.EventHandler(this.tbx_tk_TextChanged);
             // 
             // lbl_mk
             // 

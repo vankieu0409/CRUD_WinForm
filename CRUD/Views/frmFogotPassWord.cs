@@ -45,14 +45,14 @@ namespace CRUD.Views
         private void btn_Tieptheo_Click(object sender, EventArgs e)
         {
             lstAcc = svFile.OpenFile<Accounts>(path);
-
-
-            if (lstAcc.Where(a => a.Acc == tbx_tk.Text && a.Sex == (rbt_Nam.Checked ? 1 : 0) && a.YearofBirth == Convert.ToInt16(combx_namsinh.SelectedItem)).Count()<0)
+            var b = lstAcc.Where(a =>
+                a.Acc == tbx_tk.Text && a.Sex == (rbt_Nam.Checked ? 1 : 0) &&
+                a.YearofBirth == Convert.ToInt16(combx_namsinh.Text)).ToList();
+            if (b!= null)
             {
                 MessageBox.Show(" Đã tìm thấy tài khoản", " Thông báo");
                 mkmoi.Show();
             }
-
             else
             {
                 MessageBox.Show(" tài khoản bạn tìm không có!", " thông báo");
@@ -63,6 +63,7 @@ namespace CRUD.Views
         private void btn_mk_Click(object sender, EventArgs e)
         {
             frmLogin frm = new frmLogin();
+
             if (check.checkNull(mkNew.Text) || check.checkNull(xn_mkNew.Text))
             {
                 MessageBox.Show(" Không đƯợc để trống Mật khẩu mới và Xác nhận mật khẩu", " Erorr 400");

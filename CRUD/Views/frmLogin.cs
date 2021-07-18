@@ -44,7 +44,7 @@ namespace CRUD.Views
                 return;
 
             }
-            if (_lstAcc.Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status == true) != null)
+            if (_lstAcc.Where(c => c.Acc == tbx_tk.Text && c.Pass == tbx_mk.Text && c.Status != false)!=null)
             {
                 MessageBox.Show("Đăng Nhâp thành công", "Thông Bấu");
                 frmMain a = new frmMain();

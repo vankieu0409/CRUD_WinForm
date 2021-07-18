@@ -13,7 +13,7 @@ namespace CRUD.IServices
 
         public bool CheckAcc(string acc)
         {
-            return acc.All(char.IsNumber);
+            return acc.Any(char.IsNumber);
         }
 
         public bool CheckYearofBirth(string year)

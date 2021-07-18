@@ -79,12 +79,12 @@ namespace CRUD.Views
         {
 
             Accounts accounts = new Accounts();
-            accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count; // Id tự sinh
+            accounts.Id = _lstAccounts == null ? 1 : _lstAccounts.Count+1; // Id tự sinh
             accounts.Acc = tbx_tk.Text;
             accounts.Pass = tbx_mk.Text;
             accounts.Sex = rbt_Nam.Checked ? 1 : 0;
             accounts.YearofBirth = Convert.ToInt16((combx_namsinh.SelectedItem));
-            accounts.Status = cbx_khd.Checked ? false : true;
+            accounts.Status = cbx_hd.Checked;// ? false : true;
             if (MessageBox.Show("Bạn Có Muốn lưu không?", "Thông báo", MessageBoxButtons.YesNo) ==
               DialogResult.Yes)
             {
@@ -186,7 +186,6 @@ namespace CRUD.Views
             if (MessageBox.Show("Bạn Có Muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
             {
-
                 MessageBox.Show(_servicesAccount.remove(_lstAccounts.Where(c => c.Acc == tbx_tk.Text).Select(c => c.Id).FirstOrDefault()), "thông báo");
                 LoadDaTa();
             }
@@ -241,6 +240,11 @@ namespace CRUD.Views
                     x.YearofBirth, x.Status == true ? "Hoạt Động" : "Không Hoạt Động", DateTime.Now.Year - x.YearofBirth, x.Id);
             }
 
+
+        }
+
+        private void tbx_tk_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

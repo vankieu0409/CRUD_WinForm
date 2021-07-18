@@ -38,12 +38,12 @@ namespace CRUD.Views
             this.lbl_tk = new System.Windows.Forms.Label();
             this.btn_Tieptheo = new System.Windows.Forms.Button();
             this.mkmoi = new System.Windows.Forms.GroupBox();
+            this.btn_mk = new System.Windows.Forms.Button();
             this.xn_mkNew = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.mkNew = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.btn_mk = new System.Windows.Forms.Button();
             this.mkmoi.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -128,11 +128,21 @@ namespace CRUD.Views
             this.mkmoi.Controls.Add(this.label3);
             this.mkmoi.Controls.Add(this.mkNew);
             this.mkmoi.Controls.Add(this.label2);
-            this.mkmoi.Location = new System.Drawing.Point(19, 278);
+            this.mkmoi.Location = new System.Drawing.Point(21, 278);
             this.mkmoi.Name = "mkmoi";
             this.mkmoi.Size = new System.Drawing.Size(321, 188);
             this.mkmoi.TabIndex = 19;
             this.mkmoi.TabStop = false;
+            // 
+            // btn_mk
+            // 
+            this.btn_mk.Location = new System.Drawing.Point(102, 121);
+            this.btn_mk.Name = "btn_mk";
+            this.btn_mk.Size = new System.Drawing.Size(126, 46);
+            this.btn_mk.TabIndex = 21;
+            this.btn_mk.Text = "Đổi Mật Khẩu";
+            this.btn_mk.UseVisualStyleBackColor = true;
+            this.btn_mk.Click += new System.EventHandler(this.btn_mk_Click);
             // 
             // xn_mkNew
             // 
@@ -174,18 +184,8 @@ namespace CRUD.Views
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(186, 77);
             this.label4.TabIndex = 20;
-            this.label4.Text = "Tìm tài khản của Bạn";
+            this.label4.Text = "Tìm tài khoản của Bạn";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btn_mk
-            // 
-            this.btn_mk.Location = new System.Drawing.Point(102, 121);
-            this.btn_mk.Name = "btn_mk";
-            this.btn_mk.Size = new System.Drawing.Size(126, 46);
-            this.btn_mk.TabIndex = 21;
-            this.btn_mk.Text = "Đổi Mật Khẩu";
-            this.btn_mk.UseVisualStyleBackColor = true;
-            this.btn_mk.Click += new System.EventHandler(this.btn_mk_Click);
             // 
             // frmFogotPassWord
             // 
