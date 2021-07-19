@@ -128,7 +128,7 @@ namespace CRUD.Views
             this.mkmoi.Controls.Add(this.label3);
             this.mkmoi.Controls.Add(this.mkNew);
             this.mkmoi.Controls.Add(this.label2);
-            this.mkmoi.Location = new System.Drawing.Point(21, 278);
+            this.mkmoi.Location = new System.Drawing.Point(22, 212);
             this.mkmoi.Name = "mkmoi";
             this.mkmoi.Size = new System.Drawing.Size(321, 188);
             this.mkmoi.TabIndex = 19;

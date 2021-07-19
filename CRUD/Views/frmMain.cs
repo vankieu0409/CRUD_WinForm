@@ -121,7 +121,7 @@ namespace CRUD.Views
                     if (MessageBox.Show("Bạn chăc chắn chứ ?", "Thông báo", MessageBoxButtons.YesNo) ==
                         DialogResult.Yes)
                     {
-                        if (MessageBox.Show(" Mình nghĩ Bjan chưa chắc Đâu! \n Nhưng bạn có muốn tiếp tục lưu chứ?",
+                        if (MessageBox.Show(" Mình nghĩ Bạn chưa chắc Đâu! \n Nhưng bạn có muốn tiếp tục lưu chứ?",
                                 "Thông báo", MessageBoxButtons.YesNo) ==
                             DialogResult.Yes)
                         {

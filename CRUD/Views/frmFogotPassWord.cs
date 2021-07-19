@@ -44,7 +44,7 @@ namespace CRUD.Views
 
         private void btn_Tieptheo_Click(object sender, EventArgs e)
         {
-            lstAcc = svFile.OpenFile<Accounts>(path);
+            
 
             if (checkEveryThings.checkNull(tbx_tk.Text))
             {
@@ -62,7 +62,8 @@ namespace CRUD.Views
                 MessageBox.Show("Năm Sinh không đượcc nhập chữ", " Erorr 400");
                 return;
             }
-            var b = SvAcc.getlst().FirstOrDefault(a =>
+            lstAcc = svFile.OpenFile<Accounts>(path);
+            var b = lstAcc.FirstOrDefault(a =>
                 a.Acc == tbx_tk.Text && a.Sex == (rbt_Nam.Checked ? 1 : 0) &&
                 a.YearofBirth == Convert.ToInt16(combx_namsinh.Text));
             if (b!= null)
